@@ -9,7 +9,7 @@ This starter is as minimal as possible while still including Babel and Webpack.
 Create Project
 ---
 ```
-git clone git@github.com:ahfarmer/minimal-react-starter.git
+git clone git@github.com:MichaelHoste/minimal-react-starter.git
 ```
 
 
@@ -71,8 +71,8 @@ More Details
 HMR
 ---
 
-HMR is not supported in the master branch for simplicity. If you would like HMR support, you can [see the changes that add HMR support](https://github.com/ahfarmer/minimal-react-starter/compare/hmr) or you can directly clone the HMR branch:
+HMR is not supported in the master branch for simplicity. If you would like HMR support, you can [see the changes that add HMR support](https://github.com/MichaelHoste/minimal-react-starter/compare/hmr) or you can directly clone the HMR branch:
 
 ```
-git clone -b hmr git@github.com:ahfarmer/minimal-react-starter.git
+git clone -b hmr git@github.com:MichaelHoste/minimal-react-starter.git
 ```
