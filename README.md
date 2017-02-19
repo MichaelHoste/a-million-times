@@ -31,6 +31,15 @@ Usage
 2. Open [http://localhost:3000/](http://localhost:3000/).
 
 
+Bundle
+---
+
+1. `take compiled js in source'
+
+3. optimize and compress file (https://jscompress.com/)
+
+4. copy correct files in "release"
+
 
 Build it from Scratch
 ---
