@@ -7,12 +7,27 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
 
-    <title>Clocks</title>
+    <title>A Million Times</title>
+
+    <meta property="og:url"         content="http://clocks.80limit.com/" />
+    <meta property="og:title"       content="A Million Times" />
+    <meta property="og:description" content="JS/ReactJS simulation of A Million Times" />
+    <meta property="og:image"       content="http://clocks.80limit.com/image.png" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" rel="stylesheet" type="text/css">
 
     <style>
 
 * {
   box-sizing: border-box;
+}
+
+.github-banner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  z-index: 1;
 }
 
 #clocks {
@@ -93,14 +108,13 @@
   background-color: #555555;
 }
     </style>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" rel="stylesheet" type="text/css">
-
-<!--     <link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
- -->
   </head>
 
   <body>
+    <a href="https://github.com/michaelhoste/a-million-times" target="_blank">
+      <img class="github-banner" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+    </a>
+
     <div id="clocks"></div>
 
     <div id="label">A Million Times</div>
