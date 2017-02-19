@@ -1,10 +1,10 @@
-import React from 'react';
+import React    from 'react';
 import ReactDOM from 'react-dom';
-import Counter from './Counter';
+import Clocks   from './Clocks';
 
 document.addEventListener('DOMContentLoaded', function() {
   ReactDOM.render(
-    React.createElement(Counter),
-    document.getElementById('mount')
+    React.createElement(Clocks),
+    document.getElementById('clocks')
   );
 });
