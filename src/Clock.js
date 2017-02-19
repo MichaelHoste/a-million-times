@@ -1,5 +1,4 @@
 import React  from 'react'
-import moment from 'moment'
 import _      from 'lodash'
 
 class Clock extends React.Component {
@@ -14,11 +13,15 @@ class Clock extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(this.initializeInterval.bind(this), Math.floor(Math.random() * 2500))
+    this.updateClockPosition(this.props.position)
   }
 
   componentWillReceiveProps(nextProps) {
+    if(this.props.position != nextProps.position) {
+      clearInterval(this.randomInterval)
 
+      this.updateClockPosition(nextProps.position)
+    }
   }
 
   componentWillUnmount() {
@@ -31,7 +34,7 @@ class Clock extends React.Component {
       minutesAngle: this.randBetween(0, 359)
     })
 
-    setInterval( () => {
+    this.randomInterval = setInterval( () => {
       this.setState({
         hoursAngle:   this.randBetween(0, 359),
         minutesAngle: this.randBetween(0, 359)
@@ -41,6 +44,46 @@ class Clock extends React.Component {
 
   randBetween(min, max) {
     return Math.floor(Math.random()*(max-min+1)+min);
+  }
+
+  updateClockPosition(position) {
+    if(position == 'r') {
+      setTimeout(this.initializeInterval.bind(this), Math.floor(Math.random() * 2500))
+    }
+    else if(_.includes('┌┐└┘│─', position)) {
+      let hoursAngle   = 0
+      let minutesAngle = 90
+
+      if(position == '─') {
+        hoursAngle   = 0
+        minutesAngle = 180
+      }
+      else if(position == '│') {
+        hoursAngle   = 90
+        minutesAngle = 270
+      }
+      else if(position == '┐') {
+        hoursAngle   = 90
+        minutesAngle = 180
+      }
+      else if(position == '┘') {
+        hoursAngle   = 180
+        minutesAngle = 270
+      }
+      else if(position == '└') {
+        hoursAngle   = 270
+        minutesAngle = 0
+      }
+      else if(position == '┌') {
+        hoursAngle   = 0
+        minutesAngle = 90
+      }
+
+      this.setState({
+        hoursAngle:   hoursAngle,
+        minutesAngle: minutesAngle
+      })
+    }
   }
 
   staticStyle(angle) {
