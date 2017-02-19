@@ -34,7 +34,7 @@ class Clock extends React.Component {
       minutesAngle: this.randBetween(0, 359)
     })
 
-    this.randomInterval = setInterval( () => {
+    this.randomInterval = setInterval(() => {
       this.setState({
         hoursAngle:   this.randBetween(0, 359),
         minutesAngle: this.randBetween(0, 359)
@@ -47,7 +47,7 @@ class Clock extends React.Component {
   }
 
   updateClockPosition(position) {
-    if(position == 'r') {
+    if(position == 'r' || position == ' ') {
       setTimeout(this.initializeInterval.bind(this), Math.floor(Math.random() * 2500))
     }
     else if(_.includes('┌┐└┘│─', position)) {

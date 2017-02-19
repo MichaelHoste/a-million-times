@@ -16,8 +16,13 @@ class Clocks extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(this.DisplayCurrentHour.bind(this), 5000)
-    setTimeout(this.DisplayRandom.bind(this), 10000)
+    setTimeout(this.DisplayCurrentHour.bind(this), 3500)
+    setTimeout(this.DisplayRandom.bind(this), 10500)
+
+    setInterval( () => {
+      setTimeout(this.DisplayCurrentHour.bind(this), 3500)
+      setTimeout(this.DisplayRandom.bind(this), 10500)
+    }, 20000)
   }
 
   initializeGrid() {
