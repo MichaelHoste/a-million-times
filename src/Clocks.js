@@ -33,7 +33,7 @@ class Clocks extends React.Component {
       grid[i] = new Array(24)
 
       _.each(grid[i], (col, j) => {
-        grid[i][j] = 'r'
+        grid[i][j] = ' '
       })
     })
 
@@ -43,15 +43,15 @@ class Clocks extends React.Component {
   initializeDecimalGrids() {
     const _0 = this.stringsToGrid(["┌───┐",
                                    "│┌─┐│",
-                                   "││ ││",
-                                   "││ ││",
+                                   "││─││",
+                                   "││─││",
                                    "│└─┘│",
                                    "└───┘"])
 
-    const _1 = this.stringsToGrid(["┌──┐ ",
-                                   "└─┐│ ",
-                                   "  ││ ",
-                                   "  ││ ",
+    const _1 = this.stringsToGrid(["┌──┐─",
+                                   "└─┐│─",
+                                   "──││─",
+                                   "──││─",
                                    "┌─┘└┐",
                                    "└───┘"])
 
@@ -69,12 +69,12 @@ class Clocks extends React.Component {
                                    "┌──┘│",
                                    "└───┘"])
 
-    const _4 = this.stringsToGrid(["┌┐ ┌┐",
-                                   "││ ││",
+    const _4 = this.stringsToGrid(["┌┐─┌┐",
+                                   "││─││",
                                    "│└─┘│",
                                    "└──┐│",
-                                   "   ││",
-                                   "   └┘"])
+                                   "───││",
+                                   "───└┘"])
 
     const _5 = this.stringsToGrid(["┌───┐",
                                    "│┌──┘",
@@ -92,10 +92,10 @@ class Clocks extends React.Component {
 
     const _7 = this.stringsToGrid(["┌───┐",
                                    "└──┐│",
-                                   "   ││",
-                                   "   ││",
-                                   "   ││",
-                                   "   └┘"])
+                                   "───││",
+                                   "───││",
+                                   "───││",
+                                   "───└┘"])
 
     const _8 = this.stringsToGrid(["┌───┐",
                                    "│┌─┐│",
@@ -141,20 +141,21 @@ class Clocks extends React.Component {
     let hours   = moment().format('HH')
     let minutes = moment().format('mm')
 
+    _.each(grid, (row, i) => {
+      _.each(grid[i], (col, j) => {
+        grid[i][j] = '─'
+      })
+    })
+
     grid = this.insertDecimalInGrid(grid, parseInt(hours.split('')[0]),   3, 1)
     grid = this.insertDecimalInGrid(grid, parseInt(hours.split('')[1]),   3, 6)
     grid = this.insertDecimalInGrid(grid, parseInt(minutes.split('')[0]), 3, 13)
     grid = this.insertDecimalInGrid(grid, parseInt(minutes.split('')[1]), 3, 18)
 
-    grid[4][11] = '┌'
-    grid[4][12] = '┐'
-    grid[5][11] = '└'
-    grid[5][12] = '┘'
-
-    grid[6][11] = '┌'
-    grid[6][12] = '┐'
-    grid[7][11] = '└'
-    grid[7][12] = '┘'
+    grid[6][11] = grid[4][11] = '┌'
+    grid[6][12] = grid[4][12] = '┐'
+    grid[7][11] = grid[5][11] = '└'
+    grid[7][12] = grid[5][12] = '┘'
 
     this.setState({ grid: grid })
   }
@@ -164,7 +165,7 @@ class Clocks extends React.Component {
 
     _.each(grid, (row, i) => {
       _.each(grid[i], (col, j) => {
-        grid[i][j] = 'r'
+        grid[i][j] = ' '
       })
     })
 

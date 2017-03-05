@@ -47,10 +47,10 @@ class Clock extends React.Component {
   }
 
   updateClockPosition(position) {
-    if(position == 'r' || position == ' ') {
+    if(position == ' ') { // random
       setTimeout(this.initializeInterval.bind(this), Math.floor(Math.random() * 2500))
     }
-    else if(_.includes('┌┐└┘│─', position)) {
+    else if(_.includes('┌┐└┘│─', position)) { // corner + vertical/horizontal
       let hoursAngle   = 0
       let minutesAngle = 90
 
