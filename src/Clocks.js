@@ -16,13 +16,13 @@ class Clocks extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(this.DisplayCurrentHour.bind(this), 3500)
-    setTimeout(this.DisplayRandom.bind(this), 10500)
-
-    setInterval( () => {
+    let display = () => {
       setTimeout(this.DisplayCurrentHour.bind(this), 3500)
-      setTimeout(this.DisplayRandom.bind(this), 10500)
-    }, 20000)
+      setTimeout(this.DisplayRandom.bind(this), 9000)
+    }
+
+    display()
+    setInterval( () => { display() }, 18000)
   }
 
   initializeGrid() {
@@ -33,7 +33,7 @@ class Clocks extends React.Component {
       grid[i] = new Array(24)
 
       _.each(grid[i], (col, j) => {
-        grid[i][j] = ' '
+        grid[i][j] = '─'
       })
     })
 

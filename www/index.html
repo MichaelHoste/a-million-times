@@ -37,6 +37,8 @@
   left: -642px;
   position: absolute;
   margin-top: 36px;
+  width: 1284px;
+  height: 672px;
 }
 
 #label {
@@ -82,31 +84,23 @@
   border-radius: 24px;
 }
 
-.hand-hours {
+.hand-hours, .hand-minutes {
   position: absolute;
-  width: 23px;
-  height: 3px;
-  left: 21px;
-  top: 20.5px;
-  transform-origin: 1px 1.5px;
-  transform: rotate(90deg);
-  transition: inherit;
-  transition: all 1s linear;
+  width: 20px;
+  height: 4px;
+  left: 20.5px;
+  top: 20px;
+  transform-origin: 1px 2px;
+  transform: rotate(0deg);
+  /* transform: rotate3d(0, 0, 1, 0deg); smoother on Chrome, worse on FF */
+  transition: all 4s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: #555555;
 }
 
 .hand-minutes {
-  position: absolute;
-  width: 20px;
-  height: 3px;
-  left: 21px;
-  top: 20.5px;
-  transform-origin: 1px 1.5px;
-  transform: rotate(0deg);
-  transition: inherit;
-  transition: all 2s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: #555555;
+  width: 23px;
 }
+
     </style>
   </head>
 

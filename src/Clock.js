@@ -18,7 +18,7 @@ class Clock extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if(this.props.position != nextProps.position) {
-      clearInterval(this.randomInterval)
+      clearInterval(this.interval)
 
       this.updateClockPosition(nextProps.position)
     }
@@ -28,18 +28,16 @@ class Clock extends React.Component {
 
   }
 
-  initializeInterval() {
-    this.setState({
-      hoursAngle:   this.randBetween(0, 359),
-      minutesAngle: this.randBetween(0, 359)
-    })
-
-    this.randomInterval = setInterval(() => {
+  initializeRandomInterval() {
+    let randomInterval = () => {
       this.setState({
         hoursAngle:   this.randBetween(0, 359),
         minutesAngle: this.randBetween(0, 359)
       })
-    }, 2500)
+    }
+
+    randomInterval()
+    this.interval = setInterval(() => { randomInterval() }, 2500)
   }
 
   randBetween(min, max) {
@@ -48,51 +46,48 @@ class Clock extends React.Component {
 
   updateClockPosition(position) {
     if(position == ' ') { // random
-      setTimeout(this.initializeInterval.bind(this), Math.floor(Math.random() * 2500))
+      setTimeout(
+        this.initializeRandomInterval.bind(this),
+        Math.floor(Math.random() * 2500) // setTimeout with random to make them start at different times
+      )
     }
     else if(_.includes('┌┐└┘│─', position)) { // corner + vertical/horizontal
-      let hoursAngle   = 0
-      let minutesAngle = 90
-
       if(position == '─') {
-        hoursAngle   = 0
-        minutesAngle = 180
+        this.setState({
+          hoursAngle:   0,
+          minutesAngle: 180
+        })
       }
       else if(position == '│') {
-        hoursAngle   = 90
-        minutesAngle = 270
+        this.setState({
+          hoursAngle:   90,
+          minutesAngle: 270
+        })
       }
       else if(position == '┐') {
-        hoursAngle   = 90
-        minutesAngle = 180
+        this.setState({
+          hoursAngle:   90,
+          minutesAngle: 180
+        })
       }
       else if(position == '┘') {
-        hoursAngle   = 180
-        minutesAngle = 270
+        this.setState({
+          hoursAngle:   180,
+          minutesAngle: 270
+        })
       }
       else if(position == '└') {
-        hoursAngle   = 270
-        minutesAngle = 0
+        this.setState({
+          hoursAngle:   270,
+          minutesAngle: 0
+        })
       }
       else if(position == '┌') {
-        hoursAngle   = 0
-        minutesAngle = 90
+        this.setState({
+          hoursAngle:   0,
+          minutesAngle: 90
+        })
       }
-
-      this.setState({
-        hoursAngle:   hoursAngle,
-        minutesAngle: minutesAngle
-      })
-    }
-  }
-
-  staticStyle(angle) {
-    return {
-      'transform':        `rotate(${angle}deg)`,
-      'MozTransition':    "inherit",
-      'WebkitTransition': "inherit",
-      'OTransition':      "inherit",
-      'transition':       "inherit"
     }
   }
 
