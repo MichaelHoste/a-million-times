@@ -3,6 +3,11 @@ A Million Times
 
 JS simulation of this wonderful and hypnotic piece of art: http://www.humanssince1982.com/a-million-times/
 
+288 analog clocks are animated with ReactJS and CSS transitions to create a digital clock.
+
+![A Million Times](https://github.com/MichaelHoste/a-million-times/raw/master/image.gif)
+
+
 Setup
 ---
 

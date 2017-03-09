@@ -17,12 +17,17 @@ class Clocks extends React.Component {
 
   componentDidMount() {
     let display = () => {
-      setTimeout(this.DisplayCurrentHour.bind(this), 3500)
-      setTimeout(this.DisplayRandom.bind(this), 9000)
+      for(let i=0;i<5; i++) {
+        setTimeout(this.DisplayCurrentHour.bind(this, 4-i), 2000+i*600)
+      }
+
+      for(let i=0;i<24; i++) {
+        setTimeout(this.DisplayRandom.bind(this, 23-i), 9500+i*150)
+      }
     }
 
     display()
-    setInterval( () => { display() }, 18000)
+    setInterval( () => { display() }, 15500)
   }
 
   initializeGrid() {
@@ -33,7 +38,7 @@ class Clocks extends React.Component {
       grid[i] = new Array(24)
 
       _.each(grid[i], (col, j) => {
-        grid[i][j] = '─'
+        grid[i][j] = ' '
       })
     })
 
@@ -135,7 +140,8 @@ class Clocks extends React.Component {
     return grid
   }
 
-  DisplayCurrentHour() {
+  // colToDisplay is the number (0 and 1 = first and second number, 3 = separator, 4 and 5 = second number)
+  DisplayCurrentHour(colToDisplay = undefined) {
     let grid = this.state.grid
 
     let hours   = moment().format('HH')
@@ -143,29 +149,50 @@ class Clocks extends React.Component {
 
     _.each(grid, (row, i) => {
       _.each(grid[i], (col, j) => {
-        grid[i][j] = '─'
+        if(    (colToDisplay == 0 && j <  6           )
+            || (colToDisplay == 1 && j >= 6  && j < 11)
+            || (colToDisplay == 2 && j >= 11 && j < 13)
+            || (colToDisplay == 3 && j >= 13 && j < 18)
+            || (colToDisplay == 4 && j >= 18          ) ) {
+          grid[i][j] = '─'
+        }
       })
     })
 
-    grid = this.insertDecimalInGrid(grid, parseInt(hours.split('')[0]),   3, 1)
-    grid = this.insertDecimalInGrid(grid, parseInt(hours.split('')[1]),   3, 6)
-    grid = this.insertDecimalInGrid(grid, parseInt(minutes.split('')[0]), 3, 13)
-    grid = this.insertDecimalInGrid(grid, parseInt(minutes.split('')[1]), 3, 18)
+    if (colToDisplay == undefined || colToDisplay == 0) {
+      grid = this.insertDecimalInGrid(grid, parseInt(hours.split('')[0]),   3, 1)
+    }
 
-    grid[6][11] = grid[4][11] = '┌'
-    grid[6][12] = grid[4][12] = '┐'
-    grid[7][11] = grid[5][11] = '└'
-    grid[7][12] = grid[5][12] = '┘'
+    if (colToDisplay == undefined || colToDisplay == 1) {
+      grid = this.insertDecimalInGrid(grid, parseInt(hours.split('')[1]),   3, 6)
+    }
+
+    if(colToDisplay == undefined || colToDisplay == 2) {
+      grid[6][11] = grid[4][11] = '┌'
+      grid[6][12] = grid[4][12] = '┐'
+      grid[7][11] = grid[5][11] = '└'
+      grid[7][12] = grid[5][12] = '┘'
+    }
+
+    if (colToDisplay == undefined || colToDisplay == 3) {
+      grid = this.insertDecimalInGrid(grid, parseInt(minutes.split('')[0]), 3, 13)
+    }
+
+    if (colToDisplay == undefined || colToDisplay == 4) {
+      grid = this.insertDecimalInGrid(grid, parseInt(minutes.split('')[1]), 3, 18)
+    }
 
     this.setState({ grid: grid })
   }
 
-  DisplayRandom() {
+  DisplayRandom(colToRandomize = undefined) {
     let grid = this.state.grid
 
     _.each(grid, (row, i) => {
       _.each(grid[i], (col, j) => {
-        grid[i][j] = ' '
+        if(colToRandomize == undefined || colToRandomize == j) {
+          grid[i][j] = ' '
+        }
       })
     })
 

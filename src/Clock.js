@@ -48,46 +48,44 @@ class Clock extends React.Component {
     if(position == ' ') { // random
       setTimeout(
         this.initializeRandomInterval.bind(this),
-        Math.floor(Math.random() * 2500) // setTimeout with random to make them start at different times
+        this.randBetween(0, 1500) // setTimeout with random to make them start at different times
       )
     }
     else if(_.includes('┌┐└┘│─', position)) { // corner + vertical/horizontal
+      let hoursAngle   = 0
+      let minutesAngle = 0
+
       if(position == '─') {
-        this.setState({
-          hoursAngle:   0,
-          minutesAngle: 180
-        })
+        hoursAngle   = 0,
+        minutesAngle = 180
       }
       else if(position == '│') {
-        this.setState({
-          hoursAngle:   90,
-          minutesAngle: 270
-        })
+        hoursAngle   = 90,
+        minutesAngle = 270
       }
       else if(position == '┐') {
-        this.setState({
-          hoursAngle:   90,
-          minutesAngle: 180
-        })
+        hoursAngle   = 90,
+        minutesAngle = 180
       }
       else if(position == '┘') {
-        this.setState({
-          hoursAngle:   180,
-          minutesAngle: 270
-        })
+        hoursAngle   = 180,
+        minutesAngle = 270
       }
       else if(position == '└') {
-        this.setState({
-          hoursAngle:   270,
-          minutesAngle: 0
-        })
+        hoursAngle   = 270,
+        minutesAngle = 0
       }
       else if(position == '┌') {
-        this.setState({
-          hoursAngle:   0,
-          minutesAngle: 90
-        })
+        hoursAngle   = 0,
+        minutesAngle = 90
       }
+
+      setTimeout(() => {
+        this.setState({
+          hoursAngle:   hoursAngle,
+          minutesAngle: minutesAngle
+        })
+      }, this.randBetween(0, 1000))
     }
   }
 
