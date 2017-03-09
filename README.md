@@ -5,7 +5,9 @@ JS simulation of this wonderful and hypnotic piece of art: http://www.humanssinc
 
 288 analog clocks are animated with ReactJS and CSS transitions to create a digital clock.
 
-![A Million Times](https://github.com/MichaelHoste/a-million-times/raw/master/image.gif)
+[DEMO](clocks.80limit.com)
+
+[clocks.80limit.com](![A Million Times](https://github.com/MichaelHoste/a-million-times/raw/master/image.gif))
 
 
 Setup
